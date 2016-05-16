@@ -41,7 +41,7 @@ public interface ItemService extends IOperations<Item> {
      * @param keyword
      * @return
      */
-    List<Item> queryNoPage(String keyword, String time, String resource);
+    List<Item> queryNoPage(String keyword, String time, String resource, String queryWhich);
 
     /**
      * 得到所有'field'字段，无重复
@@ -50,7 +50,22 @@ public interface ItemService extends IOperations<Item> {
      */
     List<String> queryField(String field);
 
-    Page query(String keyword, String time, String resource, Page page);
+    /**
+     *
+     * @param keyword
+     * @param time
+     * @param resource
+     * @param queryWhich
+     * @param page
+     * @return
+     */
+    Page query(String keyword, String time, String resource, String queryWhich, Page page);
+
+    /**
+     *
+     * @param item
+     */
+    void createUnique(Item item);
 
 
 }

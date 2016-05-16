@@ -22,6 +22,10 @@ public class ItemServiceImpl extends AbstractService<Item> implements ItemServic
     @Resource(name = "itemDao")
     private ItemDao dao;
 
+    private static final String QUERY_TITLE = "title";
+
+    private static final String QUERY_CONTENT = "content";
+
     public ItemServiceImpl() {
         super();
     }
@@ -53,13 +57,13 @@ public class ItemServiceImpl extends AbstractService<Item> implements ItemServic
 //    }
 
     @Override
-    public List<Item> queryNoPage(String keyword, String time, String resource) {
+    public List<Item> queryNoPage(String keyword, String time, String resource, String content) {
 
         if (!StringUtil.validateString(keyword) && !StringUtil.validateString(time) && !StringUtil.validateString(resource)) {
             return findAll();
         }
 
-        String sql = generateQuerySQL(keyword, time, resource);
+        String sql = generateQuerySQL(keyword, time, resource, content);
         return dao.query(sql);
     }
 
@@ -70,15 +74,20 @@ public class ItemServiceImpl extends AbstractService<Item> implements ItemServic
     }
 
     @Override
-    public Page query(String keyword, String time, String resource, Page page) {
+    public Page query(String keyword, String time, String resource, String content, Page page) {
 
         if (!StringUtil.validateString(keyword) && !StringUtil.validateString(time) && !StringUtil.validateString(resource)) {
             return listAll(page);
         }
 
-        String sql = generateQuerySQL(keyword, time, resource);
+        String sql = generateQuerySQL(keyword, time, resource, content);
         page.setContent(dao.queryByPage(sql, page));
         return page;
+    }
+
+    @Override
+    public void createUnique(Item item) {
+        dao.createUnique(item);
     }
 
     /**
@@ -89,16 +98,21 @@ public class ItemServiceImpl extends AbstractService<Item> implements ItemServic
      * @param resource
      * @return
      */
-    private String generateQuerySQL(String keyword, String time, String resource) {
+    private String generateQuerySQL(String keyword, String time, String resource,String queryWhich) {
 
         StringBuffer sql = new StringBuffer("SELECT * FROM item WHERE ");
         String titleFilterSQL = "title LIKE '%" + keyword + "%'";
         String timeFilterSQL = "time = '" + time + "'";
         String resourceFilterSQL = "resource = '" + resource + "'";
+        String contentFilterSQL = "content LIKE '%" + keyword + "%'";
 
         //keyword不为空
         if (StringUtil.validateString(keyword)) {
-            sql.append(titleFilterSQL);
+            if (queryWhich.equals(QUERY_CONTENT)) { //全文查询
+                sql.append(contentFilterSQL);
+            } else {    //标题查询
+                sql.append(titleFilterSQL);
+            }
             if (StringUtil.validateString(time))
                 sql.append(" AND ").append(timeFilterSQL);
             if (StringUtil.validateString(resource))
@@ -117,6 +131,5 @@ public class ItemServiceImpl extends AbstractService<Item> implements ItemServic
         }
         return sql.toString();
     }
-
 
 }

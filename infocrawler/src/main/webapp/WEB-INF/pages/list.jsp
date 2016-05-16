@@ -6,16 +6,19 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>List</title>
-    <link rel="stylesheet" href="/static/css/main.css">
+
     <script type="application/javascript" src="/static/jquery-1.12.3.min.js"></script>
+    <script type="application/javascript" src="/static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/css/main.css" />
     <script type="application/javascript">
         $(function () {
 
             // 文档就绪
-            $("#selectTime").val("${time}");
-            $("#selectResource").val("${resource}");
-            $("#keyword").val("${keyword}");
-
+            $("#selectTime").val("${time }");
+            $("#selectResource").val("${resource }");
+            $("#queryWhich").val("${queryWhich }");
+            $("#keyword").val("${keyword }");
 
             $("#selectTime").change(function () {
                 $("#queryForm").submit();
@@ -24,7 +27,8 @@
             $("#selectResource").change(function () {
                 $("#queryForm").submit();
                 //alert($("#select").val());
-            });
+            })            ;
+
         });
     </script>
 </head>
@@ -48,6 +52,10 @@
                 </c:forEach>
             </select>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <select id="queryWhich" name="queryWhich">
+                <option value="title">标题</option>
+                <option value="content">全文</option>
+            </select>
             <input id="keyword" type="text" name="keyword"/>
             <input type="submit"/>
         </form>
@@ -83,8 +91,9 @@
 
 <form action="/item/export" method="post">
     <input type="hidden" value="${keyword }" name="exportKeyword" />
-    <input type="hidden" value="${time }" name="exportTime">
-    <input type="hidden" value="${resource }" name="exportResource">
+    <input type="hidden" value="${time }" name="exportTime" />
+    <input type="hidden" value="${resource }" name="exportResource" />
+    <input type="hidden" value="${queryWhich }" name="exportWhich" />
     <input type="submit" value="export"/>
 </form>
 </body>

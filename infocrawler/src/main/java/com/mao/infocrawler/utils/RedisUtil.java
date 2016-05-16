@@ -11,8 +11,8 @@ import java.util.Iterator;
 
 public class RedisUtil {
 
-    private Jedis jedis;//非切片客户端连接
-    private JedisPool jedisPool;//非切片连接池
+    private static Jedis jedis;//非切片客户端连接
+    private static JedisPool jedisPool;//非切片连接池
 
 
     public RedisUtil() {
@@ -105,7 +105,7 @@ public class RedisUtil {
      *
      * @return
      */
-    public int size() {
+    public int totalSize() {
         try {
             jedis = jedisPool.getResource();
             return jedis.keys("*").size();
@@ -118,12 +118,14 @@ public class RedisUtil {
 
     public static void main(String[] args) {
         RedisUtil r = new RedisUtil();
-        Iterator it = r.keysSet();
-        while (it.hasNext()) {
-            String key = (String) it.next();
-            String value = r.getStringVal(key);
-            System.out.println(key + value);
-        }
-//        r.flushDB();
+        r.setStringVal("1463312670728"," ");
+//        Iterator it = r.keysSet();
+//        while (it.hasNext()) {
+//            String key = (String) it.next();
+//            String value = r.getStringVal(key);
+//            System.out.println(key + value);
+//        }
+
+        //r.flushDB();
     }
 }

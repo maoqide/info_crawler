@@ -5,6 +5,7 @@ import com.mao.infocrawler.model.dao.ItemDao;
 import com.mao.infocrawler.model.dao.common.AbstractHibernateDao;
 import com.mao.infocrawler.model.entity.Item;
 import com.mao.infocrawler.utils.PageUtil;
+import com.mao.infocrawler.utils.StringUtil;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +21,25 @@ public class ItemDaoImpl extends AbstractHibernateDao<Item> implements ItemDao {
     public ItemDaoImpl() {
         super();
         setClazz(Item.class);
+    }
+
+    @Override
+    public void createUnique(Item item) {
+        String title = StringUtil.escapedString(item.getTitle());
+        String content = StringUtil.escapedString(item.getContent());
+        String url = StringUtil.escapedString(item.getUrl());
+        String resource = StringUtil.escapedString(item.getResource());
+        String time = StringUtil.escapedString(item.getTime());
+
+
+        String sql = "INSERT IGNORE INTO item (title, content, url, resource, time) VALUES ('"
+                + title + "','"
+                + content + "','"
+                + url + "','"
+                + resource + "','"
+                + time + "')";
+        getCurrentSession().createSQLQuery(sql).executeUpdate();
+
     }
 
     /**
@@ -57,5 +77,6 @@ public class ItemDaoImpl extends AbstractHibernateDao<Item> implements ItemDao {
     public List<String> queryField(final String sql) {
         return getCurrentSession().createSQLQuery(sql).list();
     }
+
 
 }

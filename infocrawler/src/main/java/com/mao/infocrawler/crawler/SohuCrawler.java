@@ -2,8 +2,8 @@ package com.mao.infocrawler.crawler;
 
 import com.alibaba.fastjson.JSON;
 import com.mao.infocrawler.model.entity.Item;
-import com.mao.infocrawler.utils.RedisUtil;
 import com.mao.infocrawler.utils.DateUtil;
+import com.mao.infocrawler.utils.RedisUtil;
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.url.WebURL;
@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 /**
  * Created by mao on 2016/2/13.
  */
-public class NeteaseCrawler extends WebCrawler {
+public class SohuCrawler extends WebCrawler {
 
     private static final Pattern FILTERS = Pattern.compile(
             ".*(\\.(css|js|bmp|gif|jpe?g|png|tiff?|mid|mp2|mp3|mp4|wav|avi|mov|mpeg|ram|m4v|pdf" +
@@ -35,7 +35,7 @@ public class NeteaseCrawler extends WebCrawler {
         }
 
         // Only accept the url if it is in the "www.ics.uci.edu" domain and protocol is "http".
-        return href.startsWith("http://tech.163.com/");
+        return href.startsWith("http://it.sohu.com/");
     }
 
     @Override
@@ -43,7 +43,7 @@ public class NeteaseCrawler extends WebCrawler {
         int docid = page.getWebURL().getDocid();
         String url = page.getWebURL().getURL();
 
-        if (!url.endsWith("html")) {
+        if (!url.endsWith("html") && !url.endsWith("shtml")) {
             return;
         }
 
@@ -51,16 +51,10 @@ public class NeteaseCrawler extends WebCrawler {
             Document  doc = Jsoup.connect(url).get();
             //Element epContentLeft = doc.select("#epContentLeft").first();
 
-            Element h1title = doc.select("#h1title").first();
-            Element h1 = doc.select("#epContentLeft > h1").first();
-            Element endText = doc.select("#endText").first();
-            String title = "";
-            if (h1title != null) {
-                title = h1title.text().trim();
-            }
-            else {
-                title = h1.text().trim();
-            }
+            Element article = doc.select("#container > .content-wrapper").first();
+            Element h1 = article.select(".news-title > h1").first();
+            Element endText = article.select("#contentText").first();
+            String title = h1.text().trim();
             //String content = endText.html();
             String content = endText.text().trim();
 
@@ -99,12 +93,13 @@ public class NeteaseCrawler extends WebCrawler {
         item.setTitle(title);
         item.setContent(content);
         item.setUrl(url);
-        item.setResource("netease");
+        item.setResource("sohu");
         item.setTime(DateUtil.getYMDHTime());
         return item;
     }
 
     public static void main(String[] args) {
+
     }
 
 }
