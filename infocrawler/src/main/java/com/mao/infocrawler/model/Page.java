@@ -30,6 +30,7 @@ public class Page {
 
     /**
      * 是否有下一页
+     *
      * @return
      */
     public boolean isHasNextPage() {
@@ -38,6 +39,7 @@ public class Page {
 
     /**
      * 是否有上一页
+     *
      * @return
      */
     public boolean isHasPrePage() {
@@ -85,5 +87,6 @@ public class Page {
     }
 
     //构造函数，默认
-    public Page(){}
+    public Page() {
+    }
 }

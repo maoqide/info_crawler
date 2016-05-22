@@ -17,7 +17,7 @@ public abstract class AbstractHibernateDao<T extends Serializable> implements IO
 
     private Class<T> clazz;
 
-    @Resource(name="sessionFactory")
+    @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory;
 
     protected final void setClazz(final Class<T> clazzToSet) {
@@ -37,7 +37,7 @@ public abstract class AbstractHibernateDao<T extends Serializable> implements IO
 
     @Override
     public final T findOne(final int id) {
-        return (T)getCurrentSession().get(clazz, id);
+        return (T) getCurrentSession().get(clazz, id);
     }
 
     @Override

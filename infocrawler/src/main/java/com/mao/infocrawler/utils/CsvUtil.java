@@ -13,18 +13,19 @@ import java.util.List;
  */
 public class CsvUtil {
 
-    public static final String[] ITEM_CSV_HEADER = {"id","title","content","url","resource","time"};
+    public static final String[] ITEM_CSV_HEADER = {"id", "title", "content", "url", "resource", "time"};
 
     /**
      * 导出csv文件
      * records每一个String为一行记录，
      * 其中每个字段中间用'###'隔开
+     *
      * @param headers
      * @param records
      */
-    public static void writeCsv(String[] headers,List<String> records) {
-        String csvFilePath = "C:\\test\\"+DateUtil.getYMDHMSSTime()+".csv";
-        CsvWriter wr =new CsvWriter(csvFilePath,',', Charset.forName("GBK"));
+    public static void writeCsv(String[] headers, List<String> records) {
+        String csvFilePath = "C:\\test\\" + DateUtil.getYMDHMSSTime() + ".csv";
+        CsvWriter wr = new CsvWriter(csvFilePath, ',', Charset.forName("GBK"));
         try {
             wr.writeRecord(headers);
             String[] row;
@@ -44,6 +45,7 @@ public class CsvUtil {
 
     /**
      * 将Item对象的List转化为writeCsv可以接受的参数
+     *
      * @param itemList
      * @return
      */
@@ -51,20 +53,20 @@ public class CsvUtil {
 
         List<String> itemStrList = new ArrayList<String>();
         for (Item item : itemList) {
-            String s = item.getId()+"###"
-                    +item.getTitle()+"###"
-                    +item.getContent()+"###"
-                    +item.getUrl()+"###"+
-                    item.getResource()+"###"
-                    +item.getTime();
+            String s = item.getId() + "###"
+                    + item.getTitle() + "###"
+                    + item.getContent() + "###"
+                    + item.getUrl() + "###" +
+                    item.getResource() + "###"
+                    + item.getTime();
             itemStrList.add(s);
         }
 
         return itemStrList;
     }
 
-    public static void main(String[] args) {
-        String[] headers = {"id","title","content","url","resource","time"};
+    /*public static void main(String[] args) {
+        String[] headers = {"id", "title", "content", "url", "resource", "time"};
         Item item = new Item();
         item.setId(1);
         item.setTitle("24r4trrwere");
@@ -75,8 +77,8 @@ public class CsvUtil {
         item.setTime("gfdgfgfgfdgfg");
 
         List<String> list = new ArrayList<String>();
-        String s = item.getId()+"###"+item.getTitle()+"###"+item.getContent()+"###"+item.getUrl()+"###"+item.getResource()+"###"+item.getTime();
+        String s = item.getId() + "###" + item.getTitle() + "###" + item.getContent() + "###" + item.getUrl() + "###" + item.getResource() + "###" + item.getTime();
         list.add(s);
         writeCsv(headers, list);
-    }
+    }*/
 }

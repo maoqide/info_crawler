@@ -20,7 +20,6 @@ public class AppController {
     private AppService service;
 
     /**
-     *
      * @param model
      * @return
      */
@@ -32,6 +31,7 @@ public class AppController {
 
     /**
      * test
+     *
      * @param model
      * @return
      */
@@ -44,7 +44,6 @@ public class AppController {
     }
 
     /**
-     *
      * @param model
      * @return
      */
@@ -53,7 +52,7 @@ public class AppController {
 
         service.startCrawler();
         model.addAttribute("finished", true);
-        model.addAttribute("total", "共爬取"+service.total()+"条记录");
+        model.addAttribute("total", "共爬取" + service.total() + "条记录");
         return "hello";
     }
 

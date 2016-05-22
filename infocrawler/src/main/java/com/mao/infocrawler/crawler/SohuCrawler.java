@@ -48,7 +48,7 @@ public class SohuCrawler extends WebCrawler {
         }
 
         try {
-            Document  doc = Jsoup.connect(url).get();
+            Document doc = Jsoup.connect(url).get();
             //Element epContentLeft = doc.select("#epContentLeft").first();
 
             Element article = doc.select("#container > .content-wrapper").first();

@@ -24,7 +24,7 @@ public class AppService {
 
     private static CrawlerController crawlerController = new CrawlerController();
 
-    public void startCrawler(){
+    public void startCrawler() {
 
         try {
             crawlerController.neteaseCrawlerStart();
@@ -37,6 +37,7 @@ public class AppService {
 
     /**
      * 得到redis中数据的总数
+     *
      * @return
      */
     public int total() {

@@ -48,7 +48,7 @@ public class NeteaseCrawler extends WebCrawler {
         }
 
         try {
-            Document  doc = Jsoup.connect(url).get();
+            Document doc = Jsoup.connect(url).get();
             //Element epContentLeft = doc.select("#epContentLeft").first();
 
             Element h1title = doc.select("#h1title").first();
@@ -57,8 +57,7 @@ public class NeteaseCrawler extends WebCrawler {
             String title = "";
             if (h1title != null) {
                 title = h1title.text().trim();
-            }
-            else {
+            } else {
                 title = h1.text().trim();
             }
             //String content = endText.html();

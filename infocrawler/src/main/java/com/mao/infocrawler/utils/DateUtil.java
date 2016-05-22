@@ -14,20 +14,22 @@ public class DateUtil {
 
     /**
      * 得到时间 精确到H
+     *
      * @return
      */
     public static String getYMDHTime() {
 
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat(YDMHFormat);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(YDMHFormat);
         return simpleDateFormat.format(new Date());
     }
 
     /**
      * 得到时间 yyyyMMddHHmmssSSS,精确到毫秒
+     *
      * @return
      */
     public static String getYMDHMSSTime() {
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat(YMDHMSSFormat);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(YMDHMSSFormat);
         return simpleDateFormat.format(new Date());
     }
 
@@ -39,7 +41,7 @@ public class DateUtil {
         return Long.toString(new Date().getTime());
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         System.out.println(getYMDHTime());
-    }
+    }*/
 }

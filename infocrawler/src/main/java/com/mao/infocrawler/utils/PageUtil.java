@@ -12,12 +12,11 @@ public class PageUtil {
     public static final int TWENTY_EVERYPAGE = 20;
 
     /**
-     *
      * @param everyPage
      * @param currentPage
      * @return
      */
-    public static Page initPage(int everyPage,int currentPage) {
+    public static Page initPage(int everyPage, int currentPage) {
         everyPage = getEveryPage(everyPage);
         currentPage = getCurrentPage(currentPage);
         return new Page(everyPage, 0, 0, currentPage);
@@ -34,9 +33,9 @@ public class PageUtil {
     }
 
     //设置总页数,需要总记录数，每页显示多少
-    public static int getTotalPage(int everyPage,int totalCount) {
+    public static int getTotalPage(int everyPage, int totalCount) {
         int totalPage = 0;
-        if(totalCount % everyPage == 0) {
+        if (totalCount % everyPage == 0) {
             totalPage = totalCount / everyPage;
         } else {
             totalPage = totalCount / everyPage + 1;
@@ -49,7 +48,7 @@ public class PageUtil {
 
         if (curPage < page.getTotalPage() && curPage > 0) {
             page.setCurrentPage(curPage);
-        } else if (curPage < 1 || page.getTotalPage() == 0){
+        } else if (curPage < 1 || page.getTotalPage() == 0) {
             page.setCurrentPage(1);
         } else {
             page.setCurrentPage(page.getTotalPage());

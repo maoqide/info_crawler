@@ -118,7 +118,7 @@ public class RedisUtil {
 
     public static void main(String[] args) {
         RedisUtil r = new RedisUtil();
-        r.setStringVal("1463312670728"," ");
+        r.setStringVal("1463312670728", " ");
 //        Iterator it = r.keysSet();
 //        while (it.hasNext()) {
 //            String key = (String) it.next();

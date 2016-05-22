@@ -8,12 +8,12 @@ import java.io.Serializable;
  */
 
 @Entity(name = "item")
-public class Item implements Serializable{
+public class Item implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     //标题
@@ -37,7 +37,7 @@ public class Item implements Serializable{
     private String time;
 
     public String toString() {
-        return "Item [id=" + id + ", title="+title +"]";
+        return "Item [id=" + id + ", title=" + title + "]";
     }
 
     public int getId() {

@@ -51,7 +51,6 @@ public interface ItemService extends IOperations<Item> {
     List<String> queryField(String field);
 
     /**
-     *
      * @param keyword
      * @param time
      * @param resource
@@ -62,7 +61,6 @@ public interface ItemService extends IOperations<Item> {
     Page query(String keyword, String time, String resource, String queryWhich, Page page);
 
     /**
-     *
      * @param item
      */
     void createUnique(Item item);

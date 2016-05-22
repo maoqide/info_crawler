@@ -17,9 +17,10 @@ public interface ItemDao extends IOperations<Item> {
     void createUnique(Item item);
 
     List<Item> query(final String sql);
+
     List<String> queryField(final String sql);
 
-//    List<Item> queryByPage(final String title, Page page);
+    //    List<Item> queryByPage(final String title, Page page);
     List<Item> queryByPage(final String sql, Page page);
 
 }

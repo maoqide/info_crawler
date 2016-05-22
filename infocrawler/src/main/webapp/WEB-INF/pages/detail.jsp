@@ -6,22 +6,26 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>ITEM${item.id}</title>
-    <link rel="stylesheet" href="/static/css/main.css">
+    <script type="application/javascript" src="/static/jquery-1.12.3.min.js"></script>
+    <script type="application/javascript" src="/static/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/static/css/main.css"/>
 </head>
 <body>
-<h2>${item.title}</h2>
+<div class="container">
+    <h2>${item.title}</h2>
 
-<div>
-    <p>
-        ${item.content}
-    </p>
+    <div>
+        <p>
+            ${item.content}
+        </p>
 
-    <p>来源：${item.resource}</p>
+        <p>来源：${item.resource}</p>
 
-    <p>爬取时间：${item.time}</p>
+        <p>爬取时间：${item.time}</p>
 
-    <p>链接：<a target="_blank" href="${item.url}">点击进入</a></p>
+        <p>链接：<a target="_blank" href="${item.url}">点击进入</a></p>
+    </div>
 </div>
-
 </body>
 </html>

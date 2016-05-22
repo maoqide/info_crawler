@@ -98,7 +98,7 @@ public class ItemServiceImpl extends AbstractService<Item> implements ItemServic
      * @param resource
      * @return
      */
-    private String generateQuerySQL(String keyword, String time, String resource,String queryWhich) {
+    private String generateQuerySQL(String keyword, String time, String resource, String queryWhich) {
 
         StringBuffer sql = new StringBuffer("SELECT * FROM item WHERE ");
         String titleFilterSQL = "title LIKE '%" + keyword + "%'";
