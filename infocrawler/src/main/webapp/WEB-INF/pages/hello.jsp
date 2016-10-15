@@ -16,21 +16,21 @@
     <h1 class="text-center"><strong>Tech crawler</strong></h1>
 
     <div class="text-center" style="margin-top:40px;">
-        <a href="/startCrawler">开始爬取</a>
-        <a href="/item/list">查看结果</a>
+        <c:if test="${!finished }">
+        <a class= "btn btn-default btn-lg" href="/startCrawler">开始爬取</a>
+        </c:if>
+        <a class= "btn btn-default btn-lg" href="/item/list">查看结果</a>
 
-        <%--<c:if test="${finished }">--%>
-        <a href="/redis2DB">将结果存入数据库</a>
-        <%--</c:if>--%>
+        <c:if test="${finished }">
+        <a class= "btn btn-default btn-lg" href="/redis2DB">将结果存入数据库</a>
+        </c:if>
 
         <h2>${total }</h2>
 
         <h2>${saved }</h2>
     </div>
 </div>
+
 </body>
 
-<script>
-
-</script>
 </html>

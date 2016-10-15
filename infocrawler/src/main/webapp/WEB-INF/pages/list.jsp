@@ -59,7 +59,7 @@
                 <option value="content">全文</option>
             </select>
             <input class="my-form-default" id="keyword" type="text" name="keyword"/>
-            <input class="btn btn-default" type="submit"/>
+            <input class="btn btn-default" type="submit" value="搜索"/>
             <a class="btn btn-default pull-right" href="list?curPage=1">显示全部</a>
         </form>
     </div>
