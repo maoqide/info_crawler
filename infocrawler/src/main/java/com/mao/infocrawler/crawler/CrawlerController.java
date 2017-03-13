@@ -81,8 +81,38 @@ public class CrawlerController {
         controller.start(SohuCrawler.class, numberOfCrawlers);
     }
 
+    public void ctripCrawlerStart() throws Exception {
+
+        String crawlStorageFolder = "C:\\Users\\mao\\Desktop\\tmp";
+
+        int numberOfCrawlers = 5;
+
+        CrawlConfig config = new CrawlConfig();
+
+        config.setCrawlStorageFolder(crawlStorageFolder);
+
+        config.setPolitenessDelay(10);
+
+        config.setMaxDepthOfCrawling(5);
+
+        config.setMaxPagesToFetch(1000);
+
+        config.setIncludeBinaryContentInCrawling(false);
+
+        config.setResumableCrawling(false);
+
+        PageFetcher pageFetcher = new PageFetcher(config);
+        RobotstxtConfig robotstxtConfig = new RobotstxtConfig();
+        RobotstxtServer robotstxtServer = new RobotstxtServer(robotstxtConfig, pageFetcher);
+        CrawlController controller = new CrawlController(config, pageFetcher, robotstxtServer);
+
+        controller.addSeed("http://vacations.ctrip.com/tours/d-thailand-100021/grouptravel#ctm_ref=va_gpt_s12_idx_p0_l5_3_txt");
+
+        controller.start(CtripCrawler.class, numberOfCrawlers);
+    }
+
     public static void main(String[] args) throws Exception {
-        new CrawlerController().sohuCrawlerStart();
+        new CrawlerController().ctripCrawlerStart();
 
 
     }
